@@ -7,6 +7,13 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime
 
+# thi is env variables
+
+# DB_NAME = "test"
+# DB_USER = "ajays"
+# DB_PASSWORD = "9110870379@Ab"
+# DB_HOST = "localhost"
+# DB_PORT = "5432"
 
 load_dotenv()
 app = Flask(__name__)
