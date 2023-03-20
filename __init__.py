@@ -4,18 +4,24 @@ import secrets
 import psycopg2 as sql
 from passlib.hash import pbkdf2_sha256
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from datetime import datetime
 
 # thi is env variables
 
-# DB_NAME = "test"
-# DB_USER = "ajays"
-# DB_PASSWORD = "9110870379@Ab"
-# DB_HOST = "localhost"
+# POSTGRES_DB = "test"
+# POSTGRES_USER = "ajays"
+# POSTGRES_PASSWORD = "9110870379@Ab"
+# POSTGRES_HOST = "localhost"
 # DB_PORT = "5432"
 
-load_dotenv()
+POSTGRES_DB = "postgres"
+POSTGRES_USER = "postgres"
+POSTGRES_PASSWORD = "root"
+POSTGRES_HOST = "db"
+# DB_PORT = "5432"
+
+# load_dotenv()
 app = Flask(__name__)
 app.secret_key=secrets.token_urlsafe()
 
@@ -33,8 +39,8 @@ def login():
         phonenumber = signup_form.phone_number.data
         dateofbirth = signup_form.dob.data
         password = pbkdf2_sha256.hash(signup_form.password.data)
-        con = sql.connect(database=os.getenv("DB_NAME"), user=os.getenv("DB_USER"), 
-                        password=os.getenv("DB_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT"))
+        con = sql.connect(database= POSTGRES_DB, user= POSTGRES_USER, 
+                        password= POSTGRES_PASSWORD, host= POSTGRES_HOST)
         con.autocommit = True
         cur = con.cursor()
         cur.execute(f'SELECT * FROM users where email=(%s)',(email,))
@@ -55,8 +61,8 @@ def login():
     if login_form.validate_on_submit():
         email = login_form.email.data
         password = login_form.password.data
-        con = sql.connect(database=os.getenv("DB_NAME"), user=os.getenv("DB_USER"), 
-                        password=os.getenv("DB_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT"))
+        con = sql.connect(database= POSTGRES_DB, user= POSTGRES_USER, 
+                        password= POSTGRES_PASSWORD, host= POSTGRES_HOST)
         con.autocommit = True
         cur = con.cursor()
         cur.execute(f'SELECT * FROM users where email=(%s)',(email,))
@@ -87,8 +93,8 @@ def chatblog():
     if not session.get("email"):
         abort(401)
     else:
-        con = sql.connect(database=os.getenv("DB_NAME"), user=os.getenv("DB_USER"), 
-                        password=os.getenv("DB_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT"))
+        con = sql.connect(database= POSTGRES_DB, user= POSTGRES_USER, 
+                        password= POSTGRES_PASSWORD, host= POSTGRES_HOST)
         con.autocommit = True
         cur = con.cursor()
         cur.execute('select * from users where email=(%s)',(session["email"],))
