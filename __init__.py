@@ -7,6 +7,56 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime
 
+
+
+
+
+
+con = sql.connect(
+    database="postgres", user="postgres", 
+  password="root", host='db', port='5432'
+)
+
+#Create a Connection
+cur = con.cursor()
+
+
+# #Create users table  in db_web database
+sql2 = '''CREATE TABLE IF NOT EXISTS users (
+	id BIGSERIAL UNIQUE PRIMARY KEY,
+	UNAME VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(10) NOT NULL,
+	date_of_birth DATE NOT NULL,
+    password VARCHAR(200) NOT NULL
+);'''
+
+content2 = '''CREATE TABLE IF NOT EXISTS content(
+			UNAME VARCHAR(50) NOT NULL,
+            email VARCHAR(50) NOT NULL,
+            title VARCHAR(50) NOT NULL,
+            date DATE NOT NULL,
+            text VARCHAR
+            );
+		'''
+
+cur.execute(sql2)
+cur.execute(content2)
+
+#commit changes
+con.commit()
+
+#close the connection
+con.close()
+print("db closed")
+
+
+
+
+
+
+
+
 # thi is env variables
 
 # DB_NAME = "test"
@@ -15,7 +65,7 @@ from datetime import datetime
 # DB_HOST = "localhost"
 # DB_PORT = "5432"
 
-# load_dotenv()
+load_dotenv()
 app = Flask(__name__)
 app.secret_key=secrets.token_urlsafe()
 
@@ -33,8 +83,10 @@ def login():
         phonenumber = signup_form.phone_number.data
         dateofbirth = signup_form.dob.data
         password = pbkdf2_sha256.hash(signup_form.password.data)
-        con = sql.connect(database=os.getenv("DB_NAME"), user=os.getenv("DB_USER"), 
-                        password=os.getenv("DB_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT"))
+        con = sql.connect(
+    database="postgres", user="postgres", 
+  password="root", host='db', port='5432'
+)
         con.autocommit = True
         cur = con.cursor()
         cur.execute(f'SELECT * FROM users where email=(%s)',(email,))
@@ -55,8 +107,11 @@ def login():
     if login_form.validate_on_submit():
         email = login_form.email.data
         password = login_form.password.data
-        con = sql.connect(database=os.getenv("DB_NAME"), user=os.getenv("DB_USER"), 
-                        password=os.getenv("DB_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT"))
+        con = sql.connect(
+    database="postgres", user="postgres", 
+  password="root", host='db', port='5432'
+)
+
         con.autocommit = True
         cur = con.cursor()
         cur.execute(f'SELECT * FROM users where email=(%s)',(email,))
@@ -87,8 +142,11 @@ def chatblog():
     if not session.get("email"):
         abort(401)
     else:
-        con = sql.connect(database=os.getenv("DB_NAME"), user=os.getenv("DB_USER"), 
-                        password=os.getenv("DB_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT"))
+        con = sql.connect(
+    database="postgres", user="postgres", 
+  password="root", host='db', port='5432'
+)
+
         con.autocommit = True
         cur = con.cursor()
         cur.execute('select * from users where email=(%s)',(session["email"],))
