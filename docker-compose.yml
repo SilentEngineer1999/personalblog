@@ -1,19 +1,27 @@
 version: '3'
+
 services:
-  python:
-    image: python
+  blogdocker:
+    image: blogdocker
     build:
       context: .
       dockerfile: ./Dockerfile
+    depends_on:
+      - db
     ports:
-      - 3000:3000
+      - 5005:5005
   db:
-    image: postgres
+    image: 'postgres:14.2-alpine'
     restart: always
     environment:
-      POSTGRES_PASSWORD: example
-  adminer:
-    image: adminer
-    restart: always
+      POSTGRES_USER:  postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
     ports:
-      - 8080:8080
+        - 5432:5432
+
+volumes:
+  db-data:
+    driver: local

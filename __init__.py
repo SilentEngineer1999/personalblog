@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, abort, redirect, url_for
-from .forms import BlogForm, SignUp, Login
+from forms import BlogForm, SignUp, Login
 import secrets
 import psycopg2 as sql
 from passlib.hash import pbkdf2_sha256
@@ -15,7 +15,7 @@ from datetime import datetime
 # DB_HOST = "localhost"
 # DB_PORT = "5432"
 
-load_dotenv()
+# load_dotenv()
 app = Flask(__name__)
 app.secret_key=secrets.token_urlsafe()
 
