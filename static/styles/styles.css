@@ -1,0 +1,135 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.card_img{
+    height: 80px;
+    width: 80px;
+}
+
+.navendtext{
+    width: 200px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.welcometext{
+    padding-left: 3rem;
+    padding-top: 3rem;
+    width: 80rem;
+    margin: auto;
+}
+
+.flashes{
+    list-style: none;
+    background-color: greenyellow;    
+    padding: 10px;
+}
+
+h1{
+    padding: 2rem;
+}
+
+p{
+    padding-left: 10rem;
+    font-size: 25px;
+    padding-top: 2rem;
+}
+
+.phone_pic{
+    transform: rotate(12deg);
+    
+}
+
+
+button{
+    margin: 1rem;
+}
+
+.welctext{
+    padding: 2rem;
+}
+
+footer{
+    height: 80px;
+}
+
+.footer{
+
+    padding: 20px 0;
+    margin-top: 50px;
+
+    color: white;   
+    font-size: 15px;
+    margin-top: auto;
+}
+
+.footer__content{
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer .left{
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .right{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.footer__item{
+    color: inherit;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.head:hover{
+    text-decoration: underline;
+}
+
+
+.footer__item:hover{
+    text-decoration: underline;
+}
+
+.footer__column{
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+.posts{
+    width: 800px;
+    margin: auto;
+}
+
+.entry_para{
+    padding-top: 0;
+    padding-left: 0;
+    padding-bottom: 20px;
+    margin: 0;
+}
+
+.head_posts{
+    padding-bottom: 20px;
+}
+
+.entry-date{
+    color: grey;
+    font-size: 12px;
+}
+
+.entry-name{
+    color: grey;
+    font-size: 12px;
+    padding-bottom: 20px;
+}

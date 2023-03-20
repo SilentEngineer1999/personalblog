@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.svg' ) }}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/styles.css') }}">
+    <title>PersonalBlog</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{ url_for('index') }}"> <img class="card_img" src="{{ url_for('static',filename='/images/message.svg')}}" alt="card"> PersonalBlog </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav navendtext">
+              <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{name}}
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+    </nav>
+  
+    <h2 class="pt-5">Enter your Content below</h2>
+    <div class="pt-5">
+        <form action="{{url_for('chatblog')}}" method="POST">
+            {{ form.csrf_token }}
+            <div class="mb-2">
+                {{ form.title.label(class="form-label") }}
+                {{ form.title(class="form-control") }}
+            </div>  
+
+            <div class="mb-2">    
+                {{ form.text.label(class="form-label") }}
+                {{form.text(class="form-control")}}
+            </div>
+
+            <div class="pt-4 mb-2">
+                {{form.submit(class="btn btn-warning")}}
+            </div>
+        </form>
+  </div>
+
+  <div class="posts">
+  <h1 >Your Posts</h1>
+
+  
+  {% for entry in entries %}
+      <hr class="head_posts">    
+      <h4>{{ entry[0] }}</h4>
+      <h5 class="entry-date">{{ entry[1] }}</h5>
+      <h5 class="entry-name">{{ entry[3] }}</h5>
+      <p class="entry_para">{{ entry[2] }}</p>
+      
+    
+  {% endfor %}
+</div>
+<footer class="footer bg-primary mt-auto">
+  <div class="footer__content">
+      <section class="left">
+          <a class="footer__item">Made By Ajay Shenoy</a>
+          <a class="footer__item" href="https://github.com/silentEngineer009?tab=repositories">Check out my other projects</a>
+      </section>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

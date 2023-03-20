@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.svg' ) }}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/styles.css') }}">
+    <title>Chat Blog</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{ url_for('index') }}"> <img class="card_img" src="{{ url_for('static',filename='/images/message.svg')}}" alt="card"> PersonalBlog </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav navendtext">
+              <li class="nav-item">
+                <a class="nav-link active head" aria-current="page" href="{{ url_for('login') }}">Login in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active head" aria-current="page" href="{{ url_for('sign_up') }}">Sign Up</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <div class="welcometext">
+      
+      <div class="container text-center">
+        <div class="row align-items-start">
+          <div class="col-6">
+            <div class="welctext">
+              <h1>Publish your passions, your way</h1>
+              <h3>Write about anything you want any time you want</h3>
+            </div> 
+      
+            <div class="buttoncollec">
+              <button id="sign_up" type="button" class="btn btn-success">Sign Up</button>
+              <button id="login" type="button" class="btn btn-info">Login</button>
+            </div>
+          </div>
+          <div class="col">
+            <div class="phone_pic">
+              <img  src="{{url_for('static', filename='images/phone pic.jpg')}}" alt="pic">
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <footer class="footer bg-primary mt-5">
+        <div class="footer__content">
+            <section class="left">
+                <a class="footer__item">Made By Ajay Shenoy</a>
+                <a class="footer__item" href="https://github.com/silentEngineer009?tab=repositories">Check out my other projects</a>
+            </section>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='javascript/index.js')}}"></script>
+</body>
+</html>
