@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='/styles/styles.css') }}">
     <title>ChatBlog</title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg bg-primary">
+<body class="color-grad">
+    <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
           <a class="navbar-brand" href="{{ url_for('index') }}"> <img class="card_img" src="{{ url_for('static',filename='/images/message.svg')}}" alt="card"> PersonalBlog </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,10 +39,10 @@
     {% endif %}
   {% endwith %}
 
-    <h2 class="pt-3">Sign Up</h2>
-
+    <h2 class="pt-3 m-auto">Sign Up</h2>
+      
     <div class="pt-3">
-        <form action="{{url_for('login')}}" method="POST">
+        <form class = "form-color px-5 pt-3 pb-3 w-25 m-auto" action="{{url_for('login')}}" method="POST">
             {{ form.csrf_token }}
             <div class="mb-2">
                 {{ form.name.label(class="form-label") }}
@@ -76,11 +76,11 @@
 
 </div>
 
-<footer class="footer bg-primary mt-auto">
+<footer class="footer mt-auto">
     <div class="footer__content">
         <section class="left">
             <a class="footer__item">Made By Ajay Shenoy</a>
-            <a class="footer__item" href="https://github.com/silentEngineer009?tab=repositories">Check out my other projects</a>
+            <a class="footer__item" href="https://github.com/SilentEngineer1999?tab=repositories">Check out my other projects</a>
         </section>
     </div>
 </footer>

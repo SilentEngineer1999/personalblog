@@ -5,3 +5,4 @@ document.getElementById("sign_up").onclick = function () {
 document.getElementById("login").onclick = function () {
     location.href = window.location.href+"login";
 };
+
